@@ -311,7 +311,7 @@ class Guard implements GuardContract
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    public function user()
+    public function user($fresh = false)
     {
         // if the user was explicitly marked as logged out.
         if ($this->loggedOut) {
@@ -320,7 +320,7 @@ class Guard implements GuardContract
         }
 
         // if the user is already set.
-        if ($this->user) {
+        if (!$fresh && $this->user) {
             return $this->user;
         }
 
